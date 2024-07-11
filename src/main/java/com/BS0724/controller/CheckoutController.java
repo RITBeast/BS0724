@@ -19,6 +19,7 @@ public class CheckoutController {
     CheckoutService checkoutService;
     @PostMapping
     public RentalAgreement checkout(@Validated @RequestBody CheckoutRequest checkoutData) throws ValidationException  {
+        System.out.println("Checkout Controller passed in: " + checkoutData);
         if(checkoutData.getDiscountPercent() < 0 || checkoutData.getDiscountPercent() > 100) {
             throw new ValidationException("Discount Percent needs to be between 0 and 100");
         }
