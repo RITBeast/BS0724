@@ -4,14 +4,17 @@ package com.BS0724.model.RentalAgreement;
 import com.BS0724.model.Tool.Tool;
 import lombok.Data;
 
+
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDate;
+
 @Data
 public class RentalAgreement {
     Tool tool;
     int rentalDays;
-    Date checkoutDate;
-    Date dueDate;
+
+    LocalDate checkoutDate;
+    LocalDate dueDate;
     BigDecimal dailyRentalCharge;
     int chargeDays;  //count of chargeable days (excludes no-charge days)
 

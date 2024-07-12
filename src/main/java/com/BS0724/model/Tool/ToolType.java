@@ -9,6 +9,8 @@ import lombok.Setter;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
+import java.math.BigDecimal;
+
 @Getter
 @Setter
 @Entity
@@ -20,18 +22,18 @@ public class ToolType {
 
     @Column(name = "daily_charge")
     @JdbcTypeCode(SqlTypes.DECIMAL)
-    private String dailyCharge;
+    private BigDecimal dailyCharge;
 
     @Column(name = "weekday_charge", nullable = false)
     @JdbcTypeCode(SqlTypes.BOOLEAN)
-    private String weekdayCharge;
+    private Boolean weekdayCharge;
 
     @Column(name = "weekend_charge", nullable = false)
     @JdbcTypeCode(SqlTypes.BOOLEAN)
-    private String weekendCharge;
+    private Boolean weekendCharge;
 
     @Column(name = "holiday_charge", nullable = false)
     @JdbcTypeCode(SqlTypes.BOOLEAN)
-    private String holidayCharge;
+    private Boolean holidayCharge;
 
 }
