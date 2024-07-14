@@ -4,7 +4,6 @@ import com.BS0724.model.DTO.CheckoutRequest;
 import com.BS0724.model.Exceptions.ToolNotFoundException;
 import com.BS0724.model.RentalAgreement.RentalAgreement;
 import com.BS0724.service.CheckoutService;
-import jakarta.validation.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.validation.annotation.Validated;
@@ -21,13 +20,13 @@ public class CheckoutController {
     @Autowired
     CheckoutService checkoutService;
     @PostMapping
-    public RentalAgreement checkout(@Validated @RequestBody CheckoutRequest checkoutData) throws ValidationException  {
+    public RentalAgreement checkout(@Validated @RequestBody CheckoutRequest checkoutData) throws ResponseStatusException  {
         System.out.println("Checkout Controller passed in: " + checkoutData);
         if(checkoutData.getDiscountPercent() < 0 || checkoutData.getDiscountPercent() > 100) {
-            throw new ValidationException("Discount Percent needs to be between 0 and 100");
+            throw new ResponseStatusException(HttpStatusCode.valueOf(400), "Discount Percent needs to be between 0 and 100");
         }
         if(checkoutData.getRentalDayCount() < 1){
-            throw new ValidationException("Rental day count must at least 1 day");
+            throw new ResponseStatusException(HttpStatusCode.valueOf(400), "Rental day count must at least 1 day");
         }
         try {
             return checkoutService.createRentalAgreement(checkoutData);
